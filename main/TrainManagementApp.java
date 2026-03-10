@@ -4,16 +4,15 @@ import java.util.*;
 /**
  * MAIN CLASS
  * 
- * Use Case 7 : Map Bogies to Capacity (Comparator)
+ * Use Case 8 : Filter Passengers Bogies using Stream.
  * 
  * Description:
- * This class sorts passenger bogies based on seating capacity 
- * using a custom comparator.
+ * This class filters passengers using stream api.
  * 
- * This maps custom ordering using Comparator.
+ * This maps functional filtering using streams.
  * 
  * @author Developer
- * @version 7.0
+ * @version 8.0
  * 
  */
 public class TrainManagementApp {
@@ -39,9 +38,9 @@ public class TrainManagementApp {
 	
 
 	public static void main(String[] args) {
-		System.out.println("==================================");
-		System.out.println("==UC 7 : Sort Bogies by Capacity==");
-		System.out.println("==================================");
+		System.out.println("================================================");
+		System.out.println("==UC 8 : Filter Passenger Bogies Using Streams==");
+		System.out.println("================================================");
 		
 		List<Bogie> bogies=new ArrayList<>();
 		
@@ -52,15 +51,15 @@ public class TrainManagementApp {
 		bogies.add(new Bogie("Sleeper",45));
 		bogies.add(new Bogie("AC Chair",28));
 		
-		System.out.println("Bogie Capacity details before sorting : ");
+		System.out.println("Bogie Capacity details before filtering : ");
 		for(Bogie b:bogies) {
 			System.out.println( b.getName() + " -> " + b.getCapacity());
 		}
 		System.out.println();
-		bogies.sort(Comparator.comparingInt(Bogie::getCapacity));
+		List<Bogie> filtered_bogies= bogies.stream().filter(b->b.getCapacity() > 30).toList();
 		
-		System.out.println("Bogie Capacity details after sorting : ");
-		for(Bogie b:bogies) {
+		System.out.println("Bogie Capacity details after filtering : ");
+		for(Bogie b:filtered_bogies) {
 			System.out.println( b.getName() + " -> " + b.getCapacity());
 		}
 		
