@@ -4,39 +4,48 @@ import java.util.*;
 /**
  * MAIN CLASS
  * 
- * Use Case 3 : Track unique Bogie Id's
+ * Use Case 4 : Maintain Ordered Bogie Consist
  * 
  * Description:
- * This class ensures that duplicate bogie ID are not added into the train 
- * formation using HashSet.
+ * This class models the physical chaining of train bogies 
+ * using LinkedList for ordered operations.
  * 
- * This use case maps uniqueness validation using Set.
+ * This maps positional operations using LinkedList.
  * 
  * @author Developer
- * @version 3.0
+ * @version 4.0
  * 
  */
 public class TrainManagementApp {
 
 	public static void main(String[] args) {
-		System.out.println("==================================");
-		System.out.println("==UC 3 : Track Unique Bogie ID's==");
-		System.out.println("==================================");
+		System.out.println("=========================================");
+		System.out.println("==UC 4 : Maintain Ordered Bogie Consist==");
+		System.out.println("=========================================");
 		
-		Set<String> bogies = new HashSet<>();
-		bogies.add("BG-101");
-		bogies.add("BG-102");
-		bogies.add("BG-103");
+		List<String> trainConsist =new LinkedList<>();
 		
+		trainConsist.add("Engine");
+		trainConsist.add("Sleeper");
+		trainConsist.add("AC");
+		trainConsist.add("Cargo");
+		trainConsist.add("Guard");
 		
-		bogies.add("BG-101");
-		bogies.add("BG-103");
-		
-		System.out.println("Bogie ID's After Insertion");
-		System.out.println(bogies);
+		System.out.println("Initial Train Consist : ");
+		System.out.println(trainConsist);
 		System.out.println();
-		System.out.println("UC3 uniqueness validation completed.");
-		System.out.println("Track Unique ID");
+		trainConsist.add(2,"Pantry Car");
+		System.out.println("'Pantry Car' Inserted at position 2 : ");
+		System.out.println(trainConsist);
+		System.out.println();
+		
+		trainConsist.removeFirst();
+		trainConsist.removeLast();
+		
+		System.out.println("After removing first and last bogie : ");
+		System.out.println(trainConsist);
+		
+		
 		
 		
 		
