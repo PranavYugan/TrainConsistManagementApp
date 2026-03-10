@@ -4,46 +4,36 @@ import java.util.*;
 /**
  * MAIN CLASS
  * 
- * Use Case 4 : Maintain Ordered Bogie Consist
+ * Use Case 5 : Preserve Insertion Order of Bogies
  * 
  * Description:
- * This class models the physical chaining of train bogies 
- * using LinkedList for ordered operations.
+ * This class maintains the exact attachment order of bogies
+ * while also preventing duplicate entries using LinkedHashSet
  * 
- * This maps positional operations using LinkedList.
+ * This maps ordered uniqueness using LinkedHashSet.
  * 
  * @author Developer
- * @version 4.0
+ * @version 5.0
  * 
  */
 public class TrainManagementApp {
 
 	public static void main(String[] args) {
-		System.out.println("=========================================");
-		System.out.println("==UC 4 : Maintain Ordered Bogie Consist==");
-		System.out.println("=========================================");
+		System.out.println("=============================================");
+		System.out.println("==UC 5 : Preserve Insertion order of Bogies==");
+		System.out.println("=============================================");
 		
-		List<String> trainConsist =new LinkedList<>();
-		
-		trainConsist.add("Engine");
-		trainConsist.add("Sleeper");
-		trainConsist.add("AC");
-		trainConsist.add("Cargo");
-		trainConsist.add("Guard");
-		
-		System.out.println("Initial Train Consist : ");
-		System.out.println(trainConsist);
+		Set<String> formation=new LinkedHashSet<>();
 		System.out.println();
-		trainConsist.add(2,"Pantry Car");
-		System.out.println("'Pantry Car' Inserted at position 2 : ");
-		System.out.println(trainConsist);
-		System.out.println();
+		formation.add("Engine");
+		formation.add("Sleeper");
+		formation.add("Engine");
+		formation.add("Cargo");
+		formation.add("Guard");
 		
-		trainConsist.removeFirst();
-		trainConsist.removeLast();
+		System.out.println("Bogie's after inserting , including a duplicate : ");
+		System.out.println(formation);
 		
-		System.out.println("After removing first and last bogie : ");
-		System.out.println(trainConsist);
 		
 		
 		
