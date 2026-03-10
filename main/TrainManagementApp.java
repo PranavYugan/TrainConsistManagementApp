@@ -4,52 +4,39 @@ import java.util.*;
 /**
  * MAIN CLASS
  * 
- * Use Case 2 : Add Passenger Bogies to train
+ * Use Case 3 : Track unique Bogie Id's
  * 
  * Description:
- * This class demonstrates how passenger bogies can be 
- * managed dynamically using ArrayList operations. 
+ * This class ensures that duplicate bogie ID are not added into the train 
+ * formation using HashSet.
  * 
- * This use case maps CRUD operations using ArrayList.
+ * This use case maps uniqueness validation using Set.
  * 
  * @author Developer
- * @version 2.0
+ * @version 3.0
  * 
  */
 public class TrainManagementApp {
 
 	public static void main(String[] args) {
-		System.out.println("=========================================");
-		System.out.println("==UC 2 : Add Passengers to Bogies Train==");
-		System.out.println("=========================================");
+		System.out.println("==================================");
+		System.out.println("==UC 3 : Track Unique Bogie ID's==");
+		System.out.println("==================================");
 		
-		List<String> trainConsist = new ArrayList<>();
-		System.out.println("Train Initialized Successfully.");
-		System.out.println();
-		System.out.println("Before adding Bogies : " );
-		System.out.println(trainConsist);
+		Set<String> bogies = new HashSet<>();
+		bogies.add("BG-101");
+		bogies.add("BG-102");
+		bogies.add("BG-103");
 		
-		trainConsist.add("Sleeper");
-		trainConsist.add("AC Chair");
-		trainConsist.add("First Class");
-		System.out.println();
-		System.out.println("After adding Bogies : " );
-		System.out.println(trainConsist);
-		System.out.println();
-		trainConsist.remove(1);
-		System.out.println();
-		System.out.println("After removing 'AC Chair' : " );
-		System.out.println(trainConsist);
-		System.out.println();
-		System.out.println("Checking if Sleeper exists : " );
-		System.out.println("Contains Sleeper ? : " + trainConsist.contains("Sleeper"));
-		System.out.println();
-		System.out.println("Final Train Passenger Consist : " );
-		System.out.println(trainConsist);
 		
-		System.out.println();
+		bogies.add("BG-101");
+		bogies.add("BG-103");
 		
-		System.out.println("UC2 Operations completed successfully");
+		System.out.println("Bogie ID's After Insertion");
+		System.out.println(bogies);
+		System.out.println();
+		System.out.println("UC3 uniqueness validation completed.");
+		System.out.println("Track Unique ID");
 		
 		
 		
