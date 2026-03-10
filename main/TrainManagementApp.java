@@ -5,15 +5,16 @@ import java.util.stream.*;
 /**
  * MAIN CLASS
  * 
- * Use Case 9 : Group Bogies by Type
+ * Use Case 10 : Count total seats in Train
  * 
  * Description:
- * This class groups bogies by using Collectors.groupingBy()
+ * This class aggregates seating capacity of all bogies in a single total
+ * using Stream reduce().
  * 
- * This maps classification logic using groupingBy.
+ * This maps aggregation logic using reduce().
  * 
  * @author Developer
- * @version 9.0
+ * @version 10.0
  * 
  */
 public class TrainManagementApp {
@@ -39,9 +40,9 @@ public class TrainManagementApp {
 	
 
 	public static void main(String[] args) {
-		System.out.println("==================================");
-		System.out.println("==UC 9 : Grouping Bogies by Type==");
-		System.out.println("==================================");
+		System.out.println("======================================");
+		System.out.println("==UC 10 : Count total seats in Train==");
+		System.out.println("======================================");
 		
 		List<Bogie> bogies=new ArrayList<>();
 		
@@ -60,18 +61,9 @@ public class TrainManagementApp {
 		}
 		System.out.println();
 		
-		System.out.println("Grouped Bogies : ");
-		System.out.println();
+		int total = bogies.stream().map(b -> b.getCapacity()).reduce(0,Integer::sum);
 		
-		Map<String,List<Bogie>> grouped_bogies= bogies.stream().collect(Collectors.groupingBy(b->b.name));
-		
-		for(Map.Entry<String, List<Bogie>> entry : grouped_bogies.entrySet()) {
-			System.out.println("Bogie Type: " + entry.getKey());
-			for(Bogie b:entry.getValue()) {
-				System.out.println(b.getName() + " -> " + b.getCapacity());
-			}
-			System.out.println();
-		}
+		System.out.println("Total seating capacity of Train : " + total);
 		
 		
 		
