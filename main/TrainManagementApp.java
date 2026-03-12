@@ -3,17 +3,16 @@ import java.util.*;
 import java.util.stream.*;
 
 /**
- * MAIN CLASS
- * 
- * Use Case 12 : Safety Compilance Check for Goods Bogie.	
+ * Use Case 13: Performance Comparision (Loops vs Streams)
  * 
  * Description:
- * This class enforces domain safety rules on goods bogies.
+ * This class compared execution time of loop-based filtering
+ * versus stream-based filtering using System.nanoTime() 
  * 
- * This maps real world cargo safety rules using streams.
+ * This maps performance benchmarking using high-resoltion timing.
  * 
  * @author Developer
- * @version 12.0
+ * @version 13.0
  * 
  */
 public class TrainManagementApp {
