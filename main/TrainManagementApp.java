@@ -66,16 +66,34 @@ public class TrainManagementApp {
 	}
 
 	public static void main(String[] args) throws CargoSafetyException {
-		System.out.println("=================================");
-		System.out.println("==UC 15 : Safe Cargo Assignment==");
-		System.out.println("==================================");
-
-		ArrayList<GoodsBogie> train = new ArrayList<>();
-		GoodsBogie.assignCargo(train,"Cylindrical","Petroleum");
-		System.out.println("Cargo Validation Completed for Cylindrical Bogie.");
+		System.out.println("============================================");
+		System.out.println("==UC 16 : Manual Sorting using Bubble Sort==");
+		System.out.println("============================================");
+		
+		
+		int[] capacities = {72,56,24,70,60};
+		System.out.println("Original Capacities : ");
+		for (int num : capacities) {
+            System.out.print(num + " ");
+        }
 		System.out.println();
-		GoodsBogie.assignCargo(train,"Rectangular","Petroleum");
-		System.out.println("Cargo Validation Completed for Rectangular Bogie.");
+		System.out.println();
+		
+        int n = capacities.length;
+        for (int i =0; i < n-1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (capacities[j] > capacities[j+1]) {
+                    int temp = capacities[j];
+                    capacities[j] = capacities[j+1];
+                    capacities[j+1] = temp;
+                }
+            }
+        }
+        System.out.println("Sorted Capacities : ");
+        for (int num : capacities) {
+            System.out.print(num + " ");
+        }
+
 	}
 
 }
