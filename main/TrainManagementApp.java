@@ -5,17 +5,18 @@ import java.util.stream.*;
 /**
  * MAIN CLASS
  * 
- * Use Case 15: Safe Cargo Assignment Using try-catch-finally
+ * Use Case 16: Sort Passenger Bogies by Capacity
  * 
  * Description:
- * This class safely assigns cargo to goods bogies
- * while handling insafe combinations using structured
- * exception handling blocks
+ * This class demonstrates manual sorting of passenger
+ * bogie capacities using the Bubble Sort algorithm
+ * instead of built-in sorting utilities.
  * 
- * This maps runtime safety handling using try-catch-finally
+ * This maps algorithmic sorting logic using Bubble Sort.
  * 
  * @author Developer
- * @version 15.0
+ * @version 16.0
+ */
  * 
  */
 public class TrainManagementApp {
