@@ -18,58 +18,69 @@ import java.util.stream.*;
  */
 public class TrainManagementApp {
 	
-	static class GoodsBogie{
-		String type;
-		String cargo;
+	static class Bogie{
+		String name;
+		int capacity;
 		
-		GoodsBogie(String type,String cargo){
-			this.type=type;
-			this.cargo=cargo;
+		public Bogie(String name,int capacity) {
+			this.name=name;
+			this.capacity=capacity;
 		}
 
-		public String getType() {
-			return type;
+		public String getName() {
+			return name;
 		}
 
-		public String getCargo() {
-			return cargo;
+		public int getCapacity() {
+			return capacity;
 		}
-		
-		
 		
 	}
 	
 
 	public static void main(String[] args) {
-		System.out.println("===================================================");
-		System.out.println("==UC 12 : Safety Compilance Check for Goods Bogie==");
-		System.out.println("===================================================");
+		System.out.println("====================================================");
+		System.out.println("==UC 13 : Performance Comparison (Loops vs Stream)==");
+		System.out.println("====================================================");
 		
-		ArrayList<GoodsBogie> train = new ArrayList<>();
-		train.add(new GoodsBogie("Cylindrical","Petroleum"));
-		train.add(new GoodsBogie("Open","Coal"));
-		train.add(new GoodsBogie("Box","Grain"));
-		train.add(new GoodsBogie("Cylindrical","Coal"));
+		List<Bogie> bogies=new ArrayList<>();
+		List<Bogie> filtered_bogies1 =new ArrayList<>();
+		System.out.println();
 		
-		System.out.println("Goods Bogies in Train");
-		for(GoodsBogie bogie : train) {
-			System.out.println(bogie.getType() + " -> " + bogie.getCargo());
+		bogies.add(new Bogie("First class",30));
+		bogies.add(new Bogie("Cargo",100));
+		bogies.add(new Bogie("Sleeper",45));
+		bogies.add(new Bogie("AC Chair",28));
+		
+		System.out.println("Bogie Capacity details : ");
+		for(Bogie b:bogies) {
+			System.out.println( b.getName() + " -> " + b.getCapacity());
 		}
 		System.out.println();
-		boolean isSafe=(train.stream().allMatch(t -> !(t.getType().equals("Cylindrical") && t.getCargo().equals("Coal"))));
+		long start_stream=System.nanoTime();
+		List<Bogie> filtered_bogies=bogies.stream().filter(b->b.getCapacity() > 30).toList();
+		long end_stream=System.nanoTime();
 		
-		System.out.println("Safety Compilance Status : " + isSafe);
-		if(isSafe) {
-			System.out.println("Train formation is SAFE.");
+		System.out.println("Stream execution time (ns) : " + (end_stream - start_stream));
+		
+		long start_loop=System.nanoTime();
+		for(Bogie bogie:bogies) {
+			if(bogie.getCapacity() >30) {
+				filtered_bogies1.add(bogie);
+			}
 		}
-		else {
-			System.out.println("Train formation is NOT SAFE.");
-		}
+		long end_loop=System.nanoTime();
+		
+		System.out.println("Loop execution time (ns) : " + (end_loop - start_loop));
 		
 		
 		
-			
-
+		
+		
+		
+		
+		
+		
 
 		
 	}
