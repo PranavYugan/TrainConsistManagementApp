@@ -5,16 +5,15 @@ import java.util.stream.*;
 /**
  * MAIN CLASS
  * 
- * Use Case 10 : Count total seats in Train
+ * Use Case 11 : Validate Train ID and Cargo Code
  * 
  * Description:
- * This class aggregates seating capacity of all bogies in a single total
- * using Stream reduce().
+ * This class validates input formats using Regular Expressions
  * 
- * This maps aggregation logic using reduce().
+ * This maps format validation logic using Pattern matching.
  * 
  * @author Developer
- * @version 10.0
+ * @version 11.0
  * 
  */
 public class TrainManagementApp {
@@ -40,30 +39,24 @@ public class TrainManagementApp {
 	
 
 	public static void main(String[] args) {
-		System.out.println("======================================");
-		System.out.println("==UC 10 : Count total seats in Train==");
-		System.out.println("======================================");
+		System.out.println("============================================");
+		System.out.println("==UC 11 : Validate Train ID and Cargo Code==");
+		System.out.println("============================================");
 		
-		List<Bogie> bogies=new ArrayList<>();
+		Scanner sc=new Scanner(System.in);
 		
+		String train_regex="^TRN-\\d{4}$";
+		String cargo_regex="^PET-[A-Z]{2}$";
+		
+		System.out.println("Enter Train ID (Format TRN-1234) :  ");
+		String train=sc.nextLine();
+		System.out.println("Enter Cargo Code (Format PET-AB) :  ");
+		String cargo=sc.nextLine();
 		System.out.println();
+		System.out.println("Validation Results : ");
+		System.out.println("Train ID Valid : " + train.matches(train_regex));
+		System.out.println("Cargo Code Valid : " + cargo.matches(cargo_regex));
 		
-		bogies.add(new Bogie("First class",30));
-		bogies.add(new Bogie("Cargo",100));
-		bogies.add(new Bogie("Sleeper",45));
-		bogies.add(new Bogie("AC Chair",28));
-		bogies.add(new Bogie("AC Chair",15));
-		bogies.add(new Bogie("Cargo",76));
-		
-		System.out.println("All Bogies : ");
-		for(Bogie b:bogies) {
-			System.out.println( b.getName() + " -> " + b.getCapacity());
-		}
-		System.out.println();
-		
-		int total = bogies.stream().map(b -> b.getCapacity()).reduce(0,Integer::sum);
-		
-		System.out.println("Total seating capacity of Train : " + total);
 		
 		
 		
