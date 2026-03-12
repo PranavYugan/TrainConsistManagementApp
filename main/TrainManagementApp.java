@@ -5,64 +5,71 @@ import java.util.stream.*;
 /**
  * MAIN CLASS
  * 
- * Use Case 11 : Validate Train ID and Cargo Code
+ * Use Case 12 : Safety Compilance Check for Goods Bogie.	
  * 
  * Description:
- * This class validates input formats using Regular Expressions
+ * This class enforces domain safety rules on goods bogies.
  * 
- * This maps format validation logic using Pattern matching.
+ * This maps real world cargo safety rules using streams.
  * 
  * @author Developer
- * @version 11.0
+ * @version 12.0
  * 
  */
 public class TrainManagementApp {
 	
-	static class Bogie{
-		String name;
-		int capacity;
+	static class GoodsBogie{
+		String type;
+		String cargo;
 		
-		public Bogie(String name,int capacity) {
-			this.name=name;
-			this.capacity=capacity;
+		GoodsBogie(String type,String cargo){
+			this.type=type;
+			this.cargo=cargo;
 		}
 
-		public String getName() {
-			return name;
+		public String getType() {
+			return type;
 		}
 
-		public int getCapacity() {
-			return capacity;
+		public String getCargo() {
+			return cargo;
 		}
+		
+		
 		
 	}
 	
 
 	public static void main(String[] args) {
-		System.out.println("============================================");
-		System.out.println("==UC 11 : Validate Train ID and Cargo Code==");
-		System.out.println("============================================");
+		System.out.println("===================================================");
+		System.out.println("==UC 12 : Safety Compilance Check for Goods Bogie==");
+		System.out.println("===================================================");
 		
-		Scanner sc=new Scanner(System.in);
+		ArrayList<GoodsBogie> train = new ArrayList<>();
+		train.add(new GoodsBogie("Cylindrical","Petroleum"));
+		train.add(new GoodsBogie("Open","Coal"));
+		train.add(new GoodsBogie("Box","Grain"));
+		train.add(new GoodsBogie("Cylindrical","Coal"));
 		
-		String train_regex="^TRN-\\d{4}$";
-		String cargo_regex="^PET-[A-Z]{2}$";
-		
-		System.out.println("Enter Train ID (Format TRN-1234) :  ");
-		String train=sc.nextLine();
-		System.out.println("Enter Cargo Code (Format PET-AB) :  ");
-		String cargo=sc.nextLine();
+		System.out.println("Goods Bogies in Train");
+		for(GoodsBogie bogie : train) {
+			System.out.println(bogie.getType() + " -> " + bogie.getCargo());
+		}
 		System.out.println();
-		System.out.println("Validation Results : ");
-		System.out.println("Train ID Valid : " + train.matches(train_regex));
-		System.out.println("Cargo Code Valid : " + cargo.matches(cargo_regex));
+		boolean isSafe=(train.stream().allMatch(t -> !(t.getType().equals("Cylindrical") && t.getCargo().equals("Coal"))));
+		
+		System.out.println("Safety Compilance Status : " + isSafe);
+		if(isSafe) {
+			System.out.println("Train formation is SAFE.");
+		}
+		else {
+			System.out.println("Train formation is NOT SAFE.");
+		}
 		
 		
 		
-		
-		
-		
-		
+			
+
 
 		
 	}
