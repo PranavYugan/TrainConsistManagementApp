@@ -5,24 +5,34 @@ import java.util.stream.*;
 /**
  * MAIN CLASS
  * 
- * Use Case 12 : Safety Compilance Check for Goods Bogie.	
+ * Use Case 14: Handle Invalid Bogie Capacity (Custom Exception)
  * 
  * Description:
- * This class enforces domain safety rules on goods bogies.
+ * This class prevents creation of passenger bogies
+ * with invalid seating capacity using a custom exception
  * 
- * This maps real world cargo safety rules using streams.
+ * This maps fail-fast validation using checked exceptions.
  * 
  * @author Developer
- * @version 12.0
+ * @version 14.0
  * 
  */
 public class TrainManagementApp {
+	
+	static class InvalidCapacityException extends Exception {
+		public InvalidCapacityException(String message) {
+			super(message);
+		}
+	}
 	
 	static class Bogie{
 		String name;
 		int capacity;
 		
-		public Bogie(String name,int capacity) {
+		public Bogie(String name,int capacity) throws InvalidCapacityException {
+			if(capacity <= 0) {
+				throw new InvalidCapacityException("Error : Capacity must be greater than zero");
+			}
 			this.name=name;
 			this.capacity=capacity;
 		}
@@ -38,40 +48,28 @@ public class TrainManagementApp {
 	}
 	
 
-	public static void main(String[] args) {
-		System.out.println("====================================================");
-		System.out.println("==UC 13 : Performance Comparison (Loops vs Stream)==");
-		System.out.println("====================================================");
+	public static void main(String[] args) throws InvalidCapacityException{
+		System.out.println("==========================================");
+		System.out.println("==UC 14 : Handle Invalid Capacity Input ==");
+		System.out.println("==========================================");
 		
 		List<Bogie> bogies=new ArrayList<>();
-		List<Bogie> filtered_bogies1 =new ArrayList<>();
-		System.out.println();
-		
-		bogies.add(new Bogie("First class",30));
-		bogies.add(new Bogie("Cargo",100));
-		bogies.add(new Bogie("Sleeper",45));
-		bogies.add(new Bogie("AC Chair",28));
-		
-		System.out.println("Bogie Capacity details : ");
-		for(Bogie b:bogies) {
-			System.out.println( b.getName() + " -> " + b.getCapacity());
-		}
-		System.out.println();
-		long start_stream=System.nanoTime();
-		List<Bogie> filtered_bogies=bogies.stream().filter(b->b.getCapacity() > 30).toList();
-		long end_stream=System.nanoTime();
-		
-		System.out.println("Stream execution time (ns) : " + (end_stream - start_stream));
-		
-		long start_loop=System.nanoTime();
-		for(Bogie bogie:bogies) {
-			if(bogie.getCapacity() >30) {
-				filtered_bogies1.add(bogie);
+		Scanner sc=new Scanner(System.in);
+		for(int i=0;i<5;i++) {
+			try {
+				System.out.println("Enter Bogie Name: ");
+				String name=sc.nextLine();
+				System.out.println("Enter Capacity: ");
+				int quantity=sc.nextInt();
+				bogies.add(new Bogie(name,quantity));
+				System.out.println(name + " -> " + quantity);
+				sc.nextLine();
+			}
+			catch(InvalidCapacityException e) {
+				System.out.println(e.getMessage());
+				break;
 			}
 		}
-		long end_loop=System.nanoTime();
-		
-		System.out.println("Loop execution time (ns) : " + (end_loop - start_loop));
 		
 		
 		
